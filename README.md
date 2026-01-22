@@ -76,3 +76,31 @@ the model will be replaced with locally executable open-weight LLMs or SLMs
       Using this bunch of contextual information, the LLM generates a raw FFmpeg commandwithout performing execution itself.
 
 
+
+* **Project Structure**
+```text
+Practice_LangChain/
+├── agent/
+│   ├── a_chain.py          # task planning
+│   ├── b_chain.py          # Capability analysis & intermediate representation
+│   ├── c_chain.py          # FFmpeg command synthesis
+│   └── agent_runner.py     # Orchestrates the full multi-chain pipeline
+│
+├── prompts/
+│   ├── a_chain_prompts.py  # Prompts for planning and task generation
+│   ├── b_chain_prompts.py  # Prompts for capability analysis & structuring
+│   └── c_chain_prompts.py  # Prompts for FFmpeg command generation
+│
+├── utils/
+│   ├── task_parser.py      # Parses task sequences from a_chain output
+│   └── context_packing.py  # Aggregates execution context across chains
+│
+├── tools/
+│   └── ffmpeg_executor.py  # Executes FFmpeg from generated commands
+│
+├── configs/
+│   └── llm.py              # LLM configuration (API / local model switchable)
+│
+└── README.md
+
+```
